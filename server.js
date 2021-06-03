@@ -7,7 +7,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 const session = require('express-session');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3000;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
     secret: 'Super secret secret',
@@ -25,6 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(routes);
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
-});
+
+// Starts the server to begin listening
+app.listen(process.env.PORT || 3000, () => console.log(`App listening on PORT ${PORT}`));
